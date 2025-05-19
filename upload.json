@@ -1,0 +1,50 @@
+openapi: 3.0.3
+info:
+  title: Service de Téléversement de Fichier
+  description: API pour téléverser des fichiers sur le serveur.
+  version: 1.0.0
+
+paths:
+  /upload:
+    post:
+      summary: Téléverse un fichier
+      description: Permet de téléverser un fichier via un formulaire multipart.
+      requestBody:
+        required: true
+        content:
+            multipart/form-data:
+            schema:
+                type: object
+                properties:
+                # The property name 'file' will be used for all files.
+                file:
+                    type: array
+                    items: {}
+      responses:
+        '200':
+          description: Fichier téléversé avec succès
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  filename:
+                    type: string
+                    description: Nom du fichier téléversé
+                  size:
+                    type: integer
+                    description: Taille du fichier en octets
+        '400':
+          description: Requête invalide (ex. aucun fichier fourni)
+        '500':
+          description: Erreur interne du serveur
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-KEY
+
+security:
+  - ApiKeyAuth: []
