@@ -43,10 +43,10 @@ paths:
 
 components:
   securitySchemes:
-    ApiKeyAuth:
-      type: apiKey
-      in: header
-      name: X-API-KEY
+    mutualTLS:
+      type: mutualTLS
+      description: Cert must be signed by example.com CA
 
 security:
-  - ApiKeyAuth: []
+  - mutualTLS: []
+
