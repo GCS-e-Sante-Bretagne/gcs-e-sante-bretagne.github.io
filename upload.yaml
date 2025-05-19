@@ -11,35 +11,35 @@ paths:
       description: Permet de téléverser un fichier via un formulaire multipart.
 
     requestBody:
-        content:
-            multipart/form-data:
-            schema:
-                type: object
-                properties:
-                # The property name 'file' will be used for all files.
-                file:
-                    type: array
-                    items:
-                        type: string
-                        format: binary
+      content:
+        multipart/form-data:
+        schema:
+            type: object
+            properties:
+            # The property name 'file' will be used for all files.
+            file:
+                type: array
+                items:
+                  type: string
+                  format: binary
     responses:
-        '200':
-          description: Fichier téléversé avec succès
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  filename:
-                    type: string
-                    description: Nom du fichier téléversé
-                  size:
-                    type: integer
-                    description: Taille du fichier en octets
-        '400':
-          description: Requête invalide (ex. aucun fichier fourni)
-        '500':
-          description: Erreur interne du serveur
+      '200':
+        description: Fichier téléversé avec succès
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                filename:
+                  type: string
+                  description: Nom du fichier téléversé
+                size:
+                  type: integer
+                  description: Taille du fichier en octets
+      '400':
+        description: Requête invalide (ex. aucun fichier fourni)
+      '500':
+        description: Erreur interne du serveur
 
 components:
   securitySchemes:
