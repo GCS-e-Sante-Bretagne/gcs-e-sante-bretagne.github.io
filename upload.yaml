@@ -9,8 +9,8 @@ paths:
     post:
       summary: Téléverse un fichier
       description: Permet de téléverser un fichier via un formulaire multipart.
-      requestBody:
-        required: true
+
+    requestBody:
         content:
             multipart/form-data:
             schema:
@@ -19,8 +19,10 @@ paths:
                 # The property name 'file' will be used for all files.
                 file:
                     type: array
-                    items: {}
-      responses:
+                    items:
+                        type: string
+                        format: binary
+    responses:
         '200':
           description: Fichier téléversé avec succès
           content:
